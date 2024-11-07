@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mreyesS6B.Views.vEstudiante"
+             Title="vEstudiante">
+    <VerticalStackLayout>
+        <Label 
+            Text="Semana 6: WS"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <ListView x:Name="lvEstudiantes">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label x:Name="lblNombre"
+                                   Text="{Binding nombre}">
+                            </Label>
+                            <Label x:Name="lblApellido"
+                                   Text="{Binding apellido}">
+                            </Label>
+                            <Label x:Name="lblEdad"
+                                   Text="{Binding edad}">
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>
