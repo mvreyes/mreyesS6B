@@ -8,7 +8,8 @@
             Text="Semana 6: WS"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <ListView x:Name="lvEstudiantes">
+        <ListView x:Name="lvEstudiantes"
+                  ItemSelected="lvEstudiantes_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -27,5 +28,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button x:Name="btnAbrir"
+                Clicked="btnAbrir_Clicked"
+                Text="Añadir estudiante">
+        </Button> 
     </VerticalStackLayout>
 </ContentPage>
