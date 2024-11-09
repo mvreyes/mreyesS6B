@@ -4,30 +4,78 @@
              x:Class="mreyesS6B.Views.vEstudiante"
              Title="vEstudiante">
     <VerticalStackLayout>
-        <Label 
-            Text="Semana 6: WS"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <ListView x:Name="lvEstudiantes"
-                  ItemSelected="lvEstudiantes_ItemSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout>
-                            <Label x:Name="lblNombre"
-                                   Text="{Binding nombre}">
-                            </Label>
-                            <Label x:Name="lblApellido"
-                                   Text="{Binding apellido}">
-                            </Label>
-                            <Label x:Name="lblEdad"
-                                   Text="{Binding edad}">
-                            </Label>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Label Text="Semana 6: WS"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" />
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Codigo" 
+                       Grid.Row="0" 
+                       Grid.Column="0" 
+                       HorizontalOptions="Center">
+                </Label>
+                <Label Text="Nombre" 
+                       Grid.Row="0" 
+                       Grid.Column="1" 
+                       HorizontalOptions="Center">
+                </Label>
+                <Label Text="Apellido" 
+                       Grid.Row="0" 
+                       Grid.Column="2" 
+                       HorizontalOptions="Center">
+                </Label>
+                <Label Text="Edad" 
+                       Grid.Row="0" 
+                       Grid.Column="3" 
+                       HorizontalOptions="Center">
+                </Label>
+                <ListView x:Name="lvEstudiantes"
+                          Grid.Row="1"
+                          Grid.ColumnSpan="4"
+                          ItemSelected="lvEstudiantes_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding codigo}" 
+                                           Grid.Column="0" 
+                                           HorizontalOptions="Center">
+                                    </Label>
+                                    <Label Text="{Binding nombre}"
+                                           Grid.Column="1" 
+                                           HorizontalOptions="Center">
+                                    </Label>
+                                    <Label Text="{Binding apellido}" 
+                                           Grid.Column="2" 
+                                           HorizontalOptions="Center">
+                                    </Label>
+                                    <Label Text="{Binding edad}" 
+                                           Grid.Column="3" 
+                                           HorizontalOptions="Center">
+                                    </Label>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
         <Button x:Name="btnAbrir"
                 Clicked="btnAbrir_Clicked"
                 Text="Añadir estudiante">
