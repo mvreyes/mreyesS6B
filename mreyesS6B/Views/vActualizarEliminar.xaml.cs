@@ -27,7 +27,6 @@ public partial class vActualizarEliminar : ContentPage
     {
         try
         {
-            // Verifica que todos los campos tengan datos válidos
             if (string.IsNullOrWhiteSpace(txtCodigo.Text) ||
                 string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtApellido.Text) ||
@@ -45,16 +44,12 @@ public partial class vActualizarEliminar : ContentPage
                 parametros.Add("apellido", txtApellido.Text);
                 parametros.Add("edad", txtEdad.Text);
 
-                // Cambia 127.0.0.1 por la dirección IP de tu computadora en la red local
                 var response = cliente.UploadValues("http://127.0.0.1/wsestudiantes/estudiante.php", "PUT", parametros);
 
-                // Convierte la respuesta a string para verificar el resultado
                 string responseString = Encoding.UTF8.GetString(response);
 
-                // Muestra la respuesta del servidor para diagnóstico
                 await DisplayAlert("Respuesta del Servidor", responseString, "Cerrar");
 
-                // Verifica si la respuesta indica éxito
                 if (responseString.Contains("success"))
                 {
                     await Navigation.PushAsync(new vEstudiante());
@@ -67,7 +62,6 @@ public partial class vActualizarEliminar : ContentPage
         }
         catch (WebException webEx)
         {
-            // Manejo de errores para WebException
             var response = (HttpWebResponse)webEx.Response;
             using (var reader = new StreamReader(response.GetResponseStream()))
             {
@@ -77,7 +71,6 @@ public partial class vActualizarEliminar : ContentPage
         }
         catch (Exception ex)
         {
-            // Manejo de errores generales
             await DisplayAlert("ERROR", ex.Message, "Cerrar");
         }
     }
@@ -87,24 +80,23 @@ public partial class vActualizarEliminar : ContentPage
     {
         try
         {
-            // Verifica que el código del estudiante esté presente
             if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
                 await DisplayAlert("ERROR", "El código del estudiante es obligatorio.", "Cerrar");
                 return;
             }
 
-            // Pregunta al usuario si está seguro de eliminar
             bool confirm = await DisplayAlert("Confirmar", "¿Estás seguro de que deseas eliminar este estudiante?", "Sí", "No");
             if (!confirm)
+            { 
                 return;
+            }
 
             using (WebClient cliente = new WebClient())
             {
                 var parametros = new System.Collections.Specialized.NameValueCollection();
                 parametros.Add("codigo", txtCodigo.Text);
 
-                // Cambia 127.0.0.1 por la dirección IP de tu computadora en la red local
                 var response = cliente.UploadValues("http://127.0.0.1/wsestudiantes/estudiante.php", "DELETE", parametros);
 
                 string responseString = Encoding.UTF8.GetString(response);
@@ -115,7 +107,6 @@ public partial class vActualizarEliminar : ContentPage
                 if (jsonResponse.ContainsKey("status") && jsonResponse["status"] == "success")
                 {
                     await DisplayAlert("Éxito", "Estudiante eliminado correctamente.", "Cerrar");
-                    // Aquí podrías navegar a otra página o actualizar la lista de estudiantes
                     await Navigation.PushAsync(new vEstudiante());
                 }
                 else
